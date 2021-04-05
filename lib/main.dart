@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+// import 'package:flutter/services.dart';
 import 'mess_chat_model.dart';
 
 void main() {
@@ -11,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Chat',
+      title: 'Flutter Chat Application',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Chat'),
+      home: MyHomePage(title: 'Chat box'),
     );
   }
 }
@@ -99,35 +100,70 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget viewLeft(MessChatModel chatModel) {
-    return Container(
-      alignment: Alignment.topLeft,
-      color: Colors.blue,
-      width: 150,
-      height: 50,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(chatModel.mess),
-            Text(chatModel.timeChat)],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
         ),
-      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: Colors.lightGreenAccent.withOpacity(0.5),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0),
+                    bottomRight: Radius.circular(25.0)),
+              ),
+              // color: Colors.grey[200],
+              // height: 50,
+              width: 300,
+              child: Text(
+                chatModel.mess + '\n' + chatModel.timeChat,
+                style: TextStyle(color: Colors.black, fontSize: 17),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
   Widget viewRight(MessChatModel chatModel) {
-    return Container(
-      alignment: Alignment.topRight,
-      color: Colors.deepOrange,
-      width: 150,
-      height: 50,
-      child: Column(
-        children: <Widget>[
-          Text(chatModel.mess),
-          Text(chatModel.timeChat)
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0),
+                    bottomLeft: Radius.circular(25.0)),
+              ),
+              // color: Colors.grey[200],
+              // height: 50,
+              width: 300,
+              child: Text(
+                chatModel.mess + '\n' + chatModel.timeChat,
+                style: TextStyle(color: Colors.yellow, fontSize: 17),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
